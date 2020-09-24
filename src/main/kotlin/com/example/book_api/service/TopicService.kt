@@ -1,43 +1,38 @@
 package com.example.book_api.service
 
 import com.example.book_api.model.Topic
+import com.example.book_api.repository.TopicRepository
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 @Service
 class TopicService {
-    var topics = ArrayList<Topic>();
-
+    @Autowired
+    lateinit var topicRepository: TopicRepository
     fun getAllTopics(): List<Topic> {
-
-        return topics.toList();
+        val topics = ArrayList<Topic>()
+        topicRepository.findAll().forEach {
+            topics.add(it)
+        }
+        return topics
     }
 
     fun getTopic(id: String): Topic {
-        return topics.first { id == it.id }
+        return topicRepository.findById(id).get()
     }
 
     fun addTopic(topic: Topic): Topic {
-        topics.add(topic)
+        topicRepository.save(topic)
         return topic;
     }
 
-    fun updateTopic(topic: Topic, id: String): Topic? {
-        for (i in 0 until topics.size) {
-            if (id == topics[i].id) {
-                topics[i] = topic
-                return topic;
-            }
-        }
-        return null;
+    fun updateTopic(topic: Topic): Topic? {
+        topicRepository.save(topic)
+        return topic
     }
 
-    fun deleteTopic(id: String): String{
-        for (i in 0 until topics.size) {
-            if (id == topics[i].id) {
-                topics.remove(topics[i])
-                return "Book deleted"
-            }
-        }
+    fun deleteTopic(id: String): String {
+        topicRepository.deleteById(id)
         return "Book Not found";
     }
 }

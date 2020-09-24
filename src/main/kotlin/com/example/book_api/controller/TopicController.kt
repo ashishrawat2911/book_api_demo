@@ -16,7 +16,7 @@ class TopicController {
     }
 
     @Throws(Exception::class)
-    @RequestMapping("/topic/{id}")
+    @RequestMapping("/topics/{id}")
     fun getTopic(@PathVariable("id") id: String): Topic {
         return topicService.getTopic(id);
     }
@@ -26,9 +26,9 @@ class TopicController {
         return topicService.addTopic(topic)
     }
 
-    @RequestMapping(value = ["/topics/{id}"], method = [RequestMethod.PUT])
-    fun updateTopic(@RequestBody topic: Topic, @PathVariable("id") id: String): Topic? {
-        return topicService.updateTopic(topic, id);
+    @RequestMapping(value = ["/topics"], method = [RequestMethod.PUT])
+    fun updateTopic(@RequestBody topic: Topic): Topic? {
+        return topicService.updateTopic(topic);
     }
 
     @RequestMapping(value = ["/topics/{id}"], method = [RequestMethod.DELETE])

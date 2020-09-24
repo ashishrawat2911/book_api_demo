@@ -1,9 +1,10 @@
 package com.example.book_api.model
 
+import javax.persistence.Entity
 import javax.persistence.Id
 
-
-class Topic {
+@Entity
+class Book {
     @Id
     lateinit var id: String;
     lateinit var name: String;
