@@ -20,4 +20,24 @@ class TopicService {
         topics.add(topic)
         return topic;
     }
+
+    fun updateTopic(topic: Topic, id: String): Topic? {
+        for (i in 0 until topics.size) {
+            if (id == topics[i].id) {
+                topics[i] = topic
+                return topic;
+            }
+        }
+        return null;
+    }
+
+    fun deleteTopic(id: String): String{
+        for (i in 0 until topics.size) {
+            if (id == topics[i].id) {
+                topics.remove(topics[i])
+                return "Book deleted"
+            }
+        }
+        return "Book Not found";
+    }
 }

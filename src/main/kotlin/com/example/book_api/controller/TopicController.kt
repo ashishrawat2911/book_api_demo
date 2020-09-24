@@ -22,7 +22,17 @@ class TopicController {
     }
 
     @RequestMapping(value = ["/topics"], method = [RequestMethod.POST])
-    fun addTopics(@RequestBody topic: Topic) : Topic {
-       return topicService.addTopic(topic)
+    fun addTopics(@RequestBody topic: Topic): Topic {
+        return topicService.addTopic(topic)
+    }
+
+    @RequestMapping(value = ["/topics/{id}"], method = [RequestMethod.PUT])
+    fun updateTopic(@RequestBody topic: Topic, @PathVariable("id") id: String): Topic? {
+        return topicService.updateTopic(topic, id);
+    }
+
+    @RequestMapping(value = ["/topics/{id}"], method = [RequestMethod.DELETE])
+    fun deleteTopic(@PathVariable("id") id: String): String {
+        return topicService.deleteTopic(id);
     }
 }
