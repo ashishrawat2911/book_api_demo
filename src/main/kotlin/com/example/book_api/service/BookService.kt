@@ -9,21 +9,17 @@ import org.springframework.stereotype.Service
 class BookService {
     @Autowired
     lateinit var bookRepository: BookRepository
-    fun getAllBooks(chapterId: String): List<Book> {
-        val topics = ArrayList<Book>()
-        bookRepository.findAll().forEach {
-            topics.add(it)
-        }
-        return topics
+    fun getAllBooks(topicsId: String): List<Book> {
+        return bookRepository.findByTopicId(topicsId);
     }
 
-    fun getBook(id: String): Book {
-        return bookRepository.findById(id).get()
+    fun getBook(bookId: String): Book {
+        return bookRepository.findById(bookId).get()
     }
 
-    fun addBook(book: Book): Book {
+    fun addBook(topicsId: String, book: Book): Book {
         bookRepository.save(book)
-        return book;
+        return book
     }
 
     fun updateBook(book: Book): Book? {
@@ -33,6 +29,6 @@ class BookService {
 
     fun deleteBook(id: String): String {
         bookRepository.deleteById(id)
-        return "Book Not found";
+        return "Book Not found"
     }
 }

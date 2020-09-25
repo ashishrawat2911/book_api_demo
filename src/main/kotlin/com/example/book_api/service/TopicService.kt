@@ -23,7 +23,7 @@ class TopicService {
 
     fun addTopic(topic: Topic): Topic {
         topicRepository.save(topic)
-        return topic;
+        return topic
     }
 
     fun updateTopic(topic: Topic): Topic? {
@@ -33,6 +33,6 @@ class TopicService {
 
     fun deleteTopic(id: String): String {
         topicRepository.deleteById(id)
-        return "Book Not found";
+        return "Book Not found"
     }
 }

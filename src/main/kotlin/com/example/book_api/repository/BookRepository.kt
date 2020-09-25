@@ -5,5 +5,6 @@ import org.springframework.data.repository.CrudRepository
 
 interface BookRepository : CrudRepository<Book, String> {
 
+    fun findByTopicId(topicId: String): List<Book>
 
 }
