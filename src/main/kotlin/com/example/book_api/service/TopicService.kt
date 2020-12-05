@@ -7,10 +7,18 @@ import org.springframework.stereotype.Service
 
 @Service
 class TopicService {
+
+
     @Autowired
     lateinit var topicRepository: TopicRepository
+
+
     fun getAllTopics(): List<Topic> {
+
+
         val topics = ArrayList<Topic>()
+
+
         topicRepository.findAll().forEach {
             topics.add(it)
         }
